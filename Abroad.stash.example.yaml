@@ -19,15 +19,9 @@ dns:
     - https://dns.google/dns-query
   follow-rule: false
   nameserver-policy:
-    "+.ru":
-      - 77.88.8.8
-      - system
-    "+.su":
-      - 77.88.8.8
-      - 1.1.1.1
-    "+.xn--p1ai":
-      - 77.88.8.8
-      - 1.1.1.1
+    "+.ru": 77.88.8.8
+    "+.su": 77.88.8.8
+    "+.xn--p1ai": 77.88.8.8
 proxy-providers:
   vless-space:
     type: http
