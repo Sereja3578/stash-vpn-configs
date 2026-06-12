@@ -10,6 +10,7 @@ Default.yaml
 resources/providers/
 resources/proxy_providers/
 resources/rules/ru-bundle/
+resources/rules/vpn-set-rules/
 override/.config.db
 
 # Keep sanitized examples and portable overrides.
