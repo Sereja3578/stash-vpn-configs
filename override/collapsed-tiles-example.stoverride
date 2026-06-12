@@ -4,56 +4,134 @@ desc: Collapsed Stash tiles for everyday routing checks.
 tiles:
   - name: Ozon-Check
     title: Ozon
+    content: Tap to check
     icon: cart.fill
     collapsed: true
+    interval: 600
+    argument: "Ozon|https://www.ozon.ru|https://www.ozon.ru|cart.fill"
     url: https://www.ozon.ru
 
   - name: Bybit-Check
     title: Bybit
+    content: Tap to check
     icon: chart.line.uptrend.xyaxis
     collapsed: true
+    interval: 600
+    argument: "Bybit|https://www.bybit.com|https://www.bybit.com|chart.line.uptrend.xyaxis"
     url: https://www.bybit.com
 
   - name: Yandex-Check
     title: Yandex
+    content: Tap to check
     icon: y.circle.fill
     collapsed: true
+    interval: 600
+    argument: "Yandex|https://ya.ru|https://ya.ru|y.circle.fill"
     url: https://ya.ru
 
-  - name: Google-Search-Captcha-Check
+  - name: Google-Check
     title: Google
+    content: Tap to check
     icon: g.circle.fill
     collapsed: true
+    interval: 600
+    argument: "Google|https://www.google.com/generate_204|https://www.google.com|g.circle.fill"
     url: https://www.google.com
 
   - name: GitHub-Check
     title: GitHub
+    content: Tap to check
     icon: chevron.left.forwardslash.chevron.right
     collapsed: true
+    interval: 600
+    argument: "GitHub|https://github.com|https://github.com|chevron.left.forwardslash.chevron.right"
     url: https://github.com
 
   - name: YouTube-Check
     title: YouTube
+    content: Tap to check
     icon: https://fastly.jsdelivr.net/gh/StashNetworks/misc@main/collapsed-tiles/img/youtube.png
     collapsed: true
+    interval: 600
+    argument: "YouTube|https://www.youtube.com|https://www.youtube.com|play.rectangle.fill"
     url: https://www.youtube.com
 
   - name: Rutube-Check
     title: Rutube
+    content: Tap to check
     icon: play.rectangle.fill
     collapsed: true
+    interval: 600
+    argument: "Rutube|https://rutube.ru|https://rutube.ru|play.rectangle.fill"
     url: https://rutube.ru
 
   - name: Instagram-Check
     title: Instagram
+    content: Tap to check
     icon: camera.fill
     collapsed: true
+    interval: 600
+    argument: "Instagram|https://www.instagram.com|https://www.instagram.com|camera.fill"
     url: https://www.instagram.com
 
 script-providers:
-  Google-Search-Captcha-Check:
-    url: https://github.com/legiz-ru/mihomo-rule-sets/raw/main/examples/stash/testtile_google_search_captcha.js
+  Ozon-Check:
     interval: 86400
+    payload: &site_reachability_tile |
+      const args = ($argument || '').split('|');
+      const title = args[0] || 'Site';
+      const checkUrl = args[1] || 'https://www.gstatic.com/generate_204';
+      const openUrl = args[2] || checkUrl;
+      const icon = args[3] || 'network';
+
+      function finish(ok, detail) {
+        $done({
+          title,
+          content: ok ? `${title}: ✅` : `${title}: ❌ ${detail}`,
+          icon,
+          url: openUrl,
+          backgroundColor: ok ? '#34C759' : '#8E8E93'
+        });
+      }
+
+      $httpClient.get({
+        url: checkUrl,
+        headers: {
+          'User-Agent': 'Mozilla/5.0 Stash reachability tile'
+        }
+      }, (error, response) => {
+        if (error) {
+          finish(false, String(error));
+          return;
+        }
+        const status = Number(response && response.status || 0);
+        finish(status >= 200 && status < 400, `HTTP ${status || 'unknown'}`);
+      });
+
+  Bybit-Check:
+    interval: 86400
+    payload: *site_reachability_tile
+
+  Yandex-Check:
+    interval: 86400
+    payload: *site_reachability_tile
+
+  Google-Check:
+    interval: 86400
+    payload: *site_reachability_tile
+
+  GitHub-Check:
+    interval: 86400
+    payload: *site_reachability_tile
+
   YouTube-Check:
-    url: https://github.com/legiz-ru/mihomo-rule-sets/raw/main/examples/stash/testtile_youtube.js
     interval: 86400
+    payload: *site_reachability_tile
+
+  Rutube-Check:
+    interval: 86400
+    payload: *site_reachability_tile
+
+  Instagram-Check:
+    interval: 86400
+    payload: *site_reachability_tile
