@@ -8,8 +8,8 @@ tiles:
     icon: cart.fill
     collapsed: true
     interval: 600
-    argument: "Ozon|https://www.ozon.ru|https://www.ozon.ru|cart.fill"
-    url: https://www.ozon.ru
+    argument: "Ozon|https://www.ozon.ru/?__rr=1&abt_att=1|https://www.ozon.ru/?__rr=1&abt_att=1|cart.fill"
+    url: https://www.ozon.ru/?__rr=1&abt_att=1
 
   - name: Bybit-Check
     title: Bybit
@@ -105,7 +105,8 @@ script-providers:
           return;
         }
         const status = Number(response && response.status || 0);
-        finish(status >= 200 && status < 400, `HTTP ${status || 'unknown'}`);
+        const reachable = (status >= 200 && status < 400) || [401, 403, 429].includes(status);
+        finish(reachable, `HTTP ${status || 'unknown'}`);
       });
 
   Bybit-Check:
