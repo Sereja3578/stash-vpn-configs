@@ -1,0 +1,295 @@
+---
+mode: rule
+log-level: warning
+ipv6: false
+
+dns:
+  enable: true
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-filter:
+    - "*.lan"
+    - "*.local"
+    - "*.home.arpa"
+    # BEGIN MANAGED CISCO DNS
+    - "+.stream.local"
+    - "+.atb.su"
+    - "+.dam.mtsmedia.ru"
+    - "+.frsmsk.mts.ru"
+    - "+.gtlk.ru"
+    - "+.inside.mts.ru"
+    - "+.intmts.ru"
+    - "+.m.ts"
+    - "+.mgts.corp.net"
+    - "+.mgts.ru"
+    - "+.mr.ru"
+    - "+.msk.mts.ru"
+    - "+.mts-corp.ru"
+    - "+.mts-lab.ru"
+    - "+.mts.ru"
+    - "+.mtsbank.ru"
+    - "+.mtsit.com"
+    - "+.mtsit.local"
+    - "+.mtsretail.ru"
+    - "+.mws.ru"
+    - "+.redsecurity.ru"
+    - "+.sapsf.com"
+    - "+.stroki.ru"
+    - "+.superanalytics.ru"
+    - "+.ticketland.ru"
+    - "+.truetabs.ru"
+    # END MANAGED CISCO DNS
+    - localhost
+    - localhost.*
+  default-nameserver:
+    - 77.88.8.8
+    - 1.1.1.1
+  nameserver:
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.google/dns-query
+  follow-rule: false
+
+  nameserver-policy:
+    # BEGIN MANAGED CISCO DNS
+    "+.stream.local":
+      - system
+    "+.atb.su":
+      - system
+    "+.dam.mtsmedia.ru":
+      - system
+    "+.frsmsk.mts.ru":
+      - system
+    "+.gtlk.ru":
+      - system
+    "+.inside.mts.ru":
+      - system
+    "+.intmts.ru":
+      - system
+    "+.m.ts":
+      - system
+    "+.mgts.corp.net":
+      - system
+    "+.mgts.ru":
+      - system
+    "+.mr.ru":
+      - system
+    "+.msk.mts.ru":
+      - system
+    "+.mts-corp.ru":
+      - system
+    "+.mts-lab.ru":
+      - system
+    "+.mts.ru":
+      - system
+    "+.mtsbank.ru":
+      - system
+    "+.mtsit.com":
+      - system
+    "+.mtsit.local":
+      - system
+    "+.mtsretail.ru":
+      - system
+    "+.mws.ru":
+      - system
+    "+.redsecurity.ru":
+      - system
+    "+.sapsf.com":
+      - system
+    "+.stroki.ru":
+      - system
+    "+.superanalytics.ru":
+      - system
+    "+.ticketland.ru":
+      - system
+    "+.truetabs.ru":
+      - system
+    # END MANAGED CISCO DNS
+    "+.ru":
+      - 77.88.8.8
+      - 1.1.1.1
+    "+.su":
+      - 77.88.8.8
+      - 1.1.1.1
+    "+.xn--p1ai":
+      - 77.88.8.8
+      - 1.1.1.1
+proxy-providers:
+  vless-space:
+    type: http
+    url: "https://YOUR_STASH_PROVIDER_URL/example.yaml"
+    path: ./providers/vless-space-clashverge-v2.yaml
+    interval: 3600
+    proxy: DIRECT
+proxies: []
+
+proxy-groups:
+  - name: PROXY
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Proxy.png
+    type: select
+    proxies:
+      - FASTER-FOREIGN
+      - MANUAL
+      - LOW-RESTRICT-FOREIGN
+      - RU-PROXY
+      - RU
+      - DIRECT
+
+  - name: LOW-RESTRICT-FOREIGN
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
+    type: select
+    proxies:
+      - LOW-RESTRICT-AUTO
+      - LOW-RESTRICT-MANUAL
+
+  - name: LOW-RESTRICT-AUTO
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
+    type: url-test
+    filter: '^(?!.*(?:USA|United States|Canada|Singapore|Hong Kong|France|United Kingdom|UK|UAE|United Arab Emirates|Russia|Россия|YT|LTE|Torrent|\| RU)).*(?:Finland|Poland|Sweden).*Gemini.*$'
+    use:
+      - vless-space
+    interval: 300
+    tolerance: 50
+    lazy: true
+    url: https://www.gstatic.com/generate_204
+
+  - name: LOW-RESTRICT-MANUAL
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Static.png
+    type: select
+    filter: '^(?!.*(?:USA|United States|Canada|Singapore|Hong Kong|France|United Kingdom|UK|UAE|United Arab Emirates|Russia|Россия|YT|LTE|Torrent|\| RU)).*(?:Finland|Poland|Sweden).*Gemini.*$'
+    use:
+      - vless-space
+
+  - name: RU-PROXY
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Russia.png
+    type: fallback
+    proxies:
+      - RU
+    interval: 300
+    timeout: 5
+    lazy: false
+    url: https://www.avito.ru
+
+  - name: RU
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Russia.png
+    type: url-test
+    filter: '(?i)(Russia|Россия|🇷🇺)'
+    use:
+      - vless-space
+    interval: 300
+    tolerance: 50
+    lazy: true
+    url: https://www.avito.ru
+
+  - name: FASTER-FOREIGN
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Auto.png
+    type: url-test
+    filter: '^(?!.*(?:USA|United States|Canada|Russia|Россия|YT|LTE|Torrent|\| RU)).*(?:Finland|Netherlands|Poland|Sweden).*Gemini.*$'
+    use:
+      - vless-space
+    interval: 300
+    tolerance: 50
+    lazy: true
+    url: https://www.gstatic.com/generate_204
+
+  - name: MANUAL
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Static.png
+    type: select
+    use:
+      - vless-space
+    proxies:
+      - LOW-RESTRICT-FOREIGN
+      - FASTER-FOREIGN
+      - RU-PROXY
+      - RU
+      - DIRECT
+
+rule-providers:
+  steam:
+    type: http
+    behavior: classical
+    format: text
+    path: ./rules/steam.list
+    url: https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Steam/Steam.list
+    interval: 86400
+  ru-bundle:
+    type: http
+    behavior: domain
+    format: mrs
+    path: ./rules/ru-bundle/rule.mrs
+    url: https://github.com/legiz-ru/mihomo-rule-sets/raw/main/ru-bundle/rule.mrs
+    interval: 86400
+  rknasnblock:
+    type: http
+    behavior: ipcidr
+    format: mrs
+    path: ./rules/ru-bundle/rknasnblock.mrs
+    url: https://github.com/legiz-ru/mihomo-rule-sets/raw/main/ru-bundle/rknasnblock.mrs
+    interval: 86400
+  ru-app-list:
+    type: http
+    behavior: classical
+    format: yaml
+    path: ./rules/ru-app-list.yaml
+    url: https://github.com/legiz-ru/mihomo-rule-sets/raw/main/other/ru-app-list.yaml
+    interval: 86400
+
+rules:
+  - DOMAIN-SUFFIX,chatgpt.com,PROXY
+  - DOMAIN-SUFFIX,openai.com,PROXY
+  - DOMAIN-SUFFIX,oaistatic.com,PROXY
+  - DOMAIN-SUFFIX,oaiusercontent.com,PROXY
+  - DOMAIN-SUFFIX,auth0.com,PROXY
+  - DOMAIN-SUFFIX,github.com,DIRECT
+  - DOMAIN-SUFFIX,githubusercontent.com,DIRECT
+  - DOMAIN,your-provider.example,DIRECT
+  - DOMAIN,bybit-exchange.github.io,LOW-RESTRICT-FOREIGN
+  - DOMAIN,bybit.ada.support,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,bycsi.com,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,byapis.com,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,bycbe.com,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,bymj.io,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,byabcde.com,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,byapps.net,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,byd3c3.com,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,bybit.biz,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,bybdc6.com,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,bybit-global.com,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,bybit.cloud,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,bybit.org,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,bybit.com,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,bybitglobal.com,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,bytick.com,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,bybit-tr.com,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,bybit.kz,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,bybit.nl,LOW-RESTRICT-FOREIGN
+  - DOMAIN-SUFFIX,bybit.eu,LOW-RESTRICT-FOREIGN
+  - DOMAIN-KEYWORD,bybit,LOW-RESTRICT-FOREIGN
+  - DOMAIN-KEYWORD,bytick,LOW-RESTRICT-FOREIGN
+
+  - RULE-SET,steam,DIRECT
+  - DOMAIN-KEYWORD,steam,DIRECT
+  - DOMAIN-KEYWORD,valve,DIRECT
+  - DOMAIN-KEYWORD,sdr,DIRECT
+
+  - RULE-SET,ru-bundle,DIRECT
+  - RULE-SET,rknasnblock,DIRECT,no-resolve
+  - RULE-SET,ru-app-list,DIRECT
+  - DOMAIN-SUFFIX,ru,DIRECT
+  - DOMAIN-SUFFIX,su,DIRECT
+  - DOMAIN-SUFFIX,xn--p1ai,DIRECT
+
+  - DOMAIN-SUFFIX,local,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,10.0.0.0/8,DIRECT,no-resolve
+  - IP-CIDR,172.16.0.0/12,DIRECT,no-resolve
+  - IP-CIDR,192.168.0.0/16,DIRECT,no-resolve
+  - IP-CIDR,169.254.0.0/16,DIRECT,no-resolve
+  # BEGIN MANAGED CISCO PROCESS RULES
+  - PROCESS-NAME,Cisco AnyConnect Secure Mobility Client,DIRECT
+  - PROCESS-NAME,AnyConnect,DIRECT
+  - PROCESS-NAME,vpnagentd,DIRECT
+  - PROCESS-NAME,com.cisco.anyconnect.macos.acsockext,DIRECT
+  # END MANAGED CISCO PROCESS RULES
+  - GEOIP,LAN,DIRECT,no-resolve
+  - GEOIP,RU,DIRECT
+  - MATCH,PROXY

@@ -1,0 +1,60 @@
+#SUBSCRIBED https://fastly.jsdelivr.net/gh/StashNetworks/misc@master/collapsed-tiles/collapsed-tiles-example.stoverride
+name: Site Reachability Tiles
+desc: Collapsed Stash tiles for everyday routing checks.
+
+tiles:
+  - name: Ozon-Check
+    title: Ozon
+    icon: cart.fill
+    collapsed: true
+    url: https://www.ozon.ru
+
+  - name: Bybit-Check
+    title: Bybit
+    icon: chart.line.uptrend.xyaxis
+    collapsed: true
+    url: https://www.bybit.com
+
+  - name: Yandex-Check
+    title: Yandex
+    icon: y.circle.fill
+    collapsed: true
+    url: https://ya.ru
+
+  - name: Google-Search-Captcha-Check
+    title: Google
+    icon: g.circle.fill
+    collapsed: true
+    url: https://www.google.com
+
+  - name: GitHub-Check
+    title: GitHub
+    icon: chevron.left.forwardslash.chevron.right
+    collapsed: true
+    url: https://github.com
+
+  - name: YouTube-Check
+    title: YouTube
+    icon: https://fastly.jsdelivr.net/gh/StashNetworks/misc@main/collapsed-tiles/img/youtube.png
+    collapsed: true
+    url: https://www.youtube.com
+
+  - name: Rutube-Check
+    title: Rutube
+    icon: play.rectangle.fill
+    collapsed: true
+    url: https://rutube.ru
+
+  - name: Instagram-Check
+    title: Instagram
+    icon: camera.fill
+    collapsed: true
+    url: https://www.instagram.com
+
+script-providers:
+  Google-Search-Captcha-Check:
+    url: https://github.com/legiz-ru/mihomo-rule-sets/raw/main/examples/stash/testtile_google_search_captcha.js
+    interval: 86400
+  YouTube-Check:
+    url: https://github.com/legiz-ru/mihomo-rule-sets/raw/main/examples/stash/testtile_youtube.js
+    interval: 86400

@@ -1,0 +1,25 @@
+.DS_Store
+*.db
+
+# Real Stash profiles can contain private provider URLs.
+Abroad.stash.yaml
+Russia.stash.yaml
+Default.yaml
+
+# Local Stash provider/rule caches can contain real proxy nodes.
+resources/providers/
+resources/proxy_providers/
+resources/rules/ru-bundle/
+override/.config.db
+
+# Keep sanitized examples and portable overrides.
+!Abroad.stash.example.yaml
+!Russia.stash.example.yaml
+!Default.example.yaml
+!override/
+!override/collapsed-tiles-example.stoverride
+
+# Local/editor noise.
+*.bak
+*.tmp
+*.log
