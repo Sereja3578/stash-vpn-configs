@@ -21,6 +21,15 @@
 
 Domain rules остаются основной переносимой логикой, потому что на iOS process rules ограничены Network Extension-моделью. Process rules можно использовать как macOS-оптимизацию, но не как единственную основу маршрутизации.
 
+## Cisco / Enterprise DNS
+
+Examples не содержат конкретные корпоративные Cisco AnyConnect DNS suffixes. Если вам нужно автоматизировать такую логику, updater может добавлять managed blocks в:
+
+- `dns.fake-ip-filter` - чтобы внутренние корпоративные домены не попадали в fake-ip.
+- `dns.nameserver-policy` - чтобы эти домены резолвились через `system`, то есть через DNS, который Cisco AnyConnect выдал системе.
+
+Это опционально: во многих сценариях Cisco AnyConnect сам настраивает локальный DNS, и отдельная автоматизация нужна только если Stash перехватывает DNS раньше системы.
+
 ## Безопасность
 
 Реальные профили, provider-cache и proxy-provider файлы исключены из Git, потому что могут содержать приватные URL, UUID и реальные ноды.
