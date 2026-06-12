@@ -1,4 +1,3 @@
-#SUBSCRIBED https://fastly.jsdelivr.net/gh/StashNetworks/misc@master/collapsed-tiles/collapsed-tiles-example.stoverride
 name: Site Reachability Tiles
 desc: Collapsed Stash tiles for everyday routing checks.
 
