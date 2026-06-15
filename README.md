@@ -21,6 +21,11 @@
 
 Domain rules остаются основной переносимой логикой, потому что на iOS process rules ограничены Network Extension-моделью. Process rules можно использовать как macOS-оптимизацию, но не как единственную основу маршрутизации.
 
+Abroad-профиль не должен вести широкий `legiz-ru` `ru-bundle` через российский
+VPN: этот bundle содержит много иностранных anti-block сервисов. Russia-профиль
+может держать `ru-bundle` только как поздний foreign `PROXY` fallback после
+явных `DIRECT` правил для российских сервисов и TLD.
+
 ## Cisco / Enterprise DNS
 
 Examples не содержат конкретные корпоративные Cisco AnyConnect DNS suffixes. Если вам нужно автоматизировать такую логику, updater может добавлять managed blocks в:
