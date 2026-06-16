@@ -17,6 +17,24 @@
 3. Замените правило `DOMAIN,your-provider.example,DIRECT` на домен своего provider.
 4. Импортируйте профиль в Stash и проверьте правила через Stash Dashboard / Records.
 
+## macOS DNS preflight
+
+На macOS перед TUN/DNS-режимом проверьте, что legacy resolver file существует:
+
+```sh
+ls -l /etc/resolv.conf /var/run/resolv.conf
+```
+
+Если `/etc/resolv.conf` отсутствует, создайте стандартную ссылку:
+
+```sh
+sudo ln -sf /var/run/resolv.conf /etc/resolv.conf
+```
+
+Stash и другие Network Extension VPN-клиенты могут пересекаться с системным DNS.
+Если `/etc/resolv.conf` отсутствует, часть TUN/DNS-цепочки может ломаться даже
+тогда, когда браузеры и обычные macOS-приложения резолвят домены нормально.
+
 ## Важная логика
 
 Domain rules остаются основной переносимой логикой, потому что на iOS process rules ограничены Network Extension-моделью. Process rules можно использовать как macOS-оптимизацию, но не как единственную основу маршрутизации.
@@ -26,14 +44,13 @@ VPN: этот bundle содержит много иностранных anti-blo
 может держать `ru-bundle` только как поздний foreign `PROXY` fallback после
 явных `DIRECT` правил для российских сервисов и TLD.
 
-## Cisco / Enterprise DNS
+## Cisco / Enterprise VPN
 
-Examples не содержат конкретные корпоративные Cisco AnyConnect DNS suffixes. Если вам нужно автоматизировать такую логику, updater может добавлять managed blocks в:
-
-- `dns.fake-ip-filter` - чтобы внутренние корпоративные домены не попадали в fake-ip.
-- `dns.nameserver-policy` - чтобы эти домены резолвились через `system`, то есть через DNS, который Cisco AnyConnect выдал системе.
-
-Это опционально: во многих сценариях Cisco AnyConnect сам настраивает локальный DNS, и отдельная автоматизация нужна только если Stash перехватывает DNS раньше системы.
+Examples не содержат конкретные корпоративные Cisco AnyConnect DNS suffixes,
+IP-адреса или process rules. Проверенный переносимый минимум для macOS - рабочий
+`/etc/resolv.conf` из секции выше и обычные private network rules в профиле.
+Корпоративные домены/IP лучше добавлять только локально и только после проверки
+логов, потому что такие правила непереносимы между компаниями и пользователями.
 
 ## Безопасность
 
