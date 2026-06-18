@@ -22,6 +22,9 @@ dns:
   follow-rule: false
 
   nameserver-policy:
+    # Optional corporate split DNS; replace with your own suffix and VPN DNS.
+    # "+.corp.example":
+    #   - 10.0.0.53
     "+.ru": 77.88.8.8
     "+.su": 77.88.8.8
     "+.xn--p1ai": 77.88.8.8
@@ -272,6 +275,8 @@ rule-providers:
     interval: 86400
 
 rules:
+  # Keep a corporate DIRECT exception before broader public-domain rules.
+  # - DOMAIN-SUFFIX,corp.example,DIRECT
   - RULE-SET,common-openai,PROXY
   - DOMAIN-SUFFIX,github.com,DIRECT
   - RULE-SET,common-instagram-meta,PROXY
