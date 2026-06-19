@@ -84,6 +84,12 @@ proxy-groups:
     lazy: false
     url: https://www.avito.ru
 
+  - name: ru-restricted-services-via-router-ru-vps
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Russia.png
+    type: select
+    proxies:
+      - DIRECT
+
   - name: RU
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Russia.png
     type: url-test
@@ -210,6 +216,13 @@ rule-providers:
     path: ./rules/vpn-set-rules/common-ru-tlds.list
     url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Common/ru-tlds.list
     interval: 86400
+  ru-restricted-services:
+    type: http
+    behavior: classical
+    format: text
+    path: ./rules/vpn-set-rules/ru-restricted-services.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Common/ru-restricted-services.list
+    interval: 3600
   abroad-ozon:
     type: http
     behavior: classical
@@ -287,6 +300,7 @@ rules:
   - RULE-SET,common-google-ai,PROXY
   - RULE-SET,russia-youtube,PROXY
   - RULE-SET,russia-ru-blocked-or-sensitive,PROXY
+  - RULE-SET,ru-restricted-services,ru-restricted-services-via-router-ru-vps
   - DOMAIN-SUFFIX,githubusercontent.com,DIRECT
   - DOMAIN,your-provider.example,DIRECT
   - RULE-SET,common-bybit-low-restrict,LOW-RESTRICT-FOREIGN

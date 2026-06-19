@@ -78,6 +78,11 @@ proxy-groups:
     proxies:
       - RU-PROXY
       - RU
+  - name: ru-restricted-services-via-router-ru-vps
+    icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Russia.png
+    type: select
+    proxies:
+      - DIRECT
   - name: RU-PROXY
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Russia.png
     type: fallback
@@ -196,6 +201,13 @@ rule-providers:
     path: ./rules/vpn-set-rules/common-ru-tlds.list
     url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Common/ru-tlds.list
     interval: 86400
+  ru-restricted-services:
+    type: http
+    behavior: classical
+    format: text
+    path: ./rules/vpn-set-rules/ru-restricted-services.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Common/ru-restricted-services.list
+    interval: 3600
   abroad-ozon:
     type: http
     behavior: classical
@@ -263,6 +275,7 @@ rules:
   - DOMAIN-KEYWORD,steam,DIRECT
   - DOMAIN-KEYWORD,valve,DIRECT
   - DOMAIN-KEYWORD,sdr,DIRECT
+  - RULE-SET,ru-restricted-services,ru-restricted-services-via-router-ru-vps
   - RULE-SET,abroad-yandex,RU-SITES
   - RULE-SET,abroad-mailru,RU-SITES
   - RULE-SET,abroad-vk,RU-SITES
