@@ -145,119 +145,119 @@ rule-providers:
     behavior: classical
     format: text
     path: ./rules/vpn-set-rules/common-openai.list
-    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Common/openai.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/refs/heads/main/Common/openai.list
     interval: 86400
   common-bybit-low-restrict:
     type: http
     behavior: classical
     format: text
     path: ./rules/vpn-set-rules/common-bybit-low-restrict.list
-    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Common/bybit-low-restrict.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/refs/heads/main/Common/bybit-low-restrict.list
     interval: 86400
   common-instagram-meta:
     type: http
     behavior: classical
     format: text
     path: ./rules/vpn-set-rules/common-instagram-meta.list
-    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Common/instagram-meta.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/refs/heads/main/Common/instagram-meta.list
     interval: 86400
   common-whatsapp:
     type: http
     behavior: classical
     format: text
     path: ./rules/vpn-set-rules/common-whatsapp.list
-    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Common/whatsapp.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/refs/heads/main/Common/whatsapp.list
     interval: 86400
   common-linkedin:
     type: http
     behavior: classical
     format: text
     path: ./rules/vpn-set-rules/common-linkedin.list
-    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Common/linkedin.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/refs/heads/main/Common/linkedin.list
     interval: 86400
   common-discord:
     type: http
     behavior: classical
     format: text
     path: ./rules/vpn-set-rules/common-discord.list
-    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Common/discord.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/refs/heads/main/Common/discord.list
     interval: 86400
   common-twitter-x:
     type: http
     behavior: classical
     format: text
     path: ./rules/vpn-set-rules/common-twitter-x.list
-    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Common/twitter-x.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/refs/heads/main/Common/twitter-x.list
     interval: 86400
   common-google-ai:
     type: http
     behavior: classical
     format: text
     path: ./rules/vpn-set-rules/common-google-ai.list
-    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Common/google-ai.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/refs/heads/main/Common/google-ai.list
     interval: 86400
   common-ru-tlds:
     type: http
     behavior: classical
     format: text
     path: ./rules/vpn-set-rules/common-ru-tlds.list
-    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Common/ru-tlds.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/refs/heads/main/Common/ru-tlds.list
     interval: 86400
   ru-restricted-services:
     type: http
     behavior: classical
     format: text
     path: ./rules/vpn-set-rules/ru-restricted-services.list
-    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Common/ru-restricted-services.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/refs/heads/main/Common/ru-restricted-services.list
     interval: 3600
   abroad-ozon:
     type: http
     behavior: classical
     format: text
     path: ./rules/vpn-set-rules/abroad-ozon.list
-    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Abroad/ozon.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/refs/heads/main/Abroad/ozon.list
     interval: 86400
   abroad-yandex:
     type: http
     behavior: classical
     format: text
     path: ./rules/vpn-set-rules/abroad-yandex.list
-    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Abroad/yandex.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/refs/heads/main/Abroad/yandex.list
     interval: 86400
   abroad-mailru:
     type: http
     behavior: classical
     format: text
     path: ./rules/vpn-set-rules/abroad-mailru.list
-    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Abroad/mailru.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/refs/heads/main/Abroad/mailru.list
     interval: 86400
   abroad-vk:
     type: http
     behavior: classical
     format: text
     path: ./rules/vpn-set-rules/abroad-vk.list
-    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Abroad/vk.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/refs/heads/main/Abroad/vk.list
     interval: 86400
   abroad-rutube:
     type: http
     behavior: classical
     format: text
     path: ./rules/vpn-set-rules/abroad-rutube.list
-    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Abroad/rutube.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/refs/heads/main/Abroad/rutube.list
     interval: 86400
   abroad-mts:
     type: http
     behavior: classical
     format: text
     path: ./rules/vpn-set-rules/abroad-mts.list
-    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Abroad/mts.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/refs/heads/main/Abroad/mts.list
     interval: 86400
   abroad-tbank:
     type: http
     behavior: classical
     format: text
     path: ./rules/vpn-set-rules/abroad-tbank.list
-    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/main/Abroad/tbank.list
+    url: https://raw.githubusercontent.com/Sereja3578/vpn-set-rules/refs/heads/main/Abroad/tbank.list
     interval: 86400
 rules:
   # Enable this before broader public-domain rules when the local provider exists.
