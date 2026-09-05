@@ -33,7 +33,7 @@ proxy-providers:
     interval: 3600
     proxy: DIRECT
     headers:
-      User-Agent: Stash
+      User-Agent: clash-verge
 proxies: []
 
 proxy-groups:

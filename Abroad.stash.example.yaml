@@ -30,7 +30,7 @@ proxy-providers:
     interval: 3600
     proxy: DIRECT
     headers:
-      User-Agent: Stash
+      User-Agent: clash-verge
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
