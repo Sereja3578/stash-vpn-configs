@@ -56,7 +56,7 @@ proxy-groups:
   - name: LOW-RESTRICT-AUTO
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Global.png
     type: url-test
-    filter: '^(?!.*(?:USA|United States|Canada|Singapore|Hong Kong|France|United Kingdom|UK|UAE|United Arab Emirates|Russia|Россия|YT|LTE|Torrent|\| RU)).*(?:Finland|Poland|Sweden).*Gemini.*$'
+    filter: '^(?!.*(?:USA|United States|Canada|Singapore|Hong Kong|France|United Kingdom|UK|UAE|United Arab Emirates|Russia|Россия|YT|LTE|Torrent|\| RU)).*(?:Finland|Germany|Netherlands|Poland|Sweden).*Gemini.*$'
     use:
       - vless-space
     interval: 300
@@ -66,7 +66,7 @@ proxy-groups:
   - name: LOW-RESTRICT-MANUAL
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Static.png
     type: select
-    filter: '^(?!.*(?:USA|United States|Canada|Singapore|Hong Kong|France|United Kingdom|UK|UAE|United Arab Emirates|Russia|Россия|YT|LTE|Torrent|\| RU)).*(?:Finland|Poland|Sweden).*Gemini.*$'
+    filter: '^(?!.*(?:USA|United States|Canada|Singapore|Hong Kong|France|United Kingdom|UK|UAE|United Arab Emirates|Russia|Россия|YT|LTE|Torrent|\| RU)).*(?:Finland|Germany|Netherlands|Poland|Sweden).*Gemini.*$'
     use:
       - vless-space
   - name: RU-SITES
