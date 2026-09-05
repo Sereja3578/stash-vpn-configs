@@ -32,6 +32,8 @@ proxy-providers:
     path: ./providers/vless-space-clashverge-v2.yaml
     interval: 3600
     proxy: DIRECT
+    headers:
+      User-Agent: Stash
 proxies: []
 
 proxy-groups:

@@ -29,6 +29,8 @@ proxy-providers:
     path: ./proxy_providers/vless-space.yaml
     interval: 3600
     proxy: DIRECT
+    headers:
+      User-Agent: Stash
     health-check:
       enable: true
       url: https://www.gstatic.com/generate_204
