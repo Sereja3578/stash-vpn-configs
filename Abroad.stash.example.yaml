@@ -104,7 +104,7 @@ proxy-groups:
   - name: FASTER-FOREIGN
     icon: https://fastly.jsdelivr.net/gh/Koolson/Qure/IconSet/Color/Auto.png
     type: url-test
-    filter: '^(?!.*(?:USA|United States|Canada|Russia|Россия|YT|LTE|Torrent|\| RU)).*(?:Finland|Netherlands|Poland|Sweden).*Gemini.*$'
+    filter: '^(?!.*(?:USA|United States|Canada|Russia|Россия|YT|LTE|Torrent|\| RU)).*(?:Finland|Germany|Netherlands|Poland|Sweden).*$'
     use:
       - vless-space
     interval: 300
