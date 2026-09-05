@@ -29,7 +29,7 @@ proxy-providers:
   vless-space:
     type: http
     url: "https://YOUR_STASH_PROVIDER_URL/example.yaml"
-    path: ./providers/vless-space-clashverge-v2.yaml
+    path: ./proxy_providers/vless-space-profilegrid.yaml
     interval: 3600
     proxy: DIRECT
     headers:
